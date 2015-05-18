@@ -6,7 +6,7 @@ public abstract class PerformanceTest {
 	protected abstract void init();
 
 	@Inject
-	IClock clock;
+	protected IClock clock;
 	protected long runtime;
 
 	public final void start() {

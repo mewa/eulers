@@ -2,11 +2,14 @@ package com.aisd.euler;
 
 import javax.inject.Inject;
 
+import junit.framework.Test;
+
 import com.aisd.euler.components.ApplicationComponent;
 import com.aisd.euler.components.DaggerApplicationComponent;
 import com.aisd.euler.components.DaggerGraphComponent;
 import com.aisd.euler.components.DaggerGraphPerformanceTestComponent;
 import com.aisd.euler.components.DaggerLoggerComponent;
+import com.aisd.euler.components.GraphPerformanceTestComponent;
 import com.aisd.euler.interfaces.Application;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
@@ -19,22 +22,20 @@ public class Main {
 	static Logger logger;
 
 	public static void inject(GraphPerformanceTest obj) {
-		appComponent.inject(obj);
+		 appComponent.inject(obj);
 	}
 
 	static {
-		appComponent = DaggerApplicationComponent.builder()
-				.graphComponent(DaggerGraphComponent.create())
-				.loggerComponent(DaggerLoggerComponent.create()).build();
+		appComponent = DaggerApplicationComponent.create();
 		app = appComponent.app();
 		logger = app.logger();
+		logger.setLogLevel(Logger.VERBOSE);
 	}
 
 	public static void main(String[] args) {
 		GraphPerformanceTest test = new GraphPerformanceTest();
-		appComponent.inject(test);
-
 		test.start();
+		
 		
 		logger.log(Logger.DEBUG, "END");
 	}

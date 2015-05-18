@@ -1,5 +1,7 @@
 package com.aisd.euler.modules;
 
+import javax.inject.Singleton;
+
 import com.aisd.euler.interfaces.IClock;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.OutputStream;
@@ -12,6 +14,7 @@ import dagger.Provides;
 public class DebugLoggerModule {
 
 	@Provides
+	@Singleton
 	Logger provideLogger(OutputStream stream, IClock clock) {
 		return new DebugLogger(stream, clock);
 	}

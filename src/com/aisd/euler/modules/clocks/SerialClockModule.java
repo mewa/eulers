@@ -1,5 +1,7 @@
 package com.aisd.euler.modules.clocks;
 
+import javax.inject.Singleton;
+
 import com.aisd.euler.interfaces.IClock;
 import com.aisd.euler.utils.SerialClock;
 
@@ -10,6 +12,7 @@ import dagger.Provides;
 public class SerialClockModule {
 
 	@Provides
+	@Singleton
 	IClock provideClock() {
 		return new SerialClock();
 	}
