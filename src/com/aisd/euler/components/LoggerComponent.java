@@ -10,5 +10,5 @@ import dagger.Component;
 @Component(modules = { StandardOutputModule.class, DebugLoggerModule.class,
 		SerialClockModule.class })
 public interface LoggerComponent {
-	Logger getLogger();
+	Logger provideLogger();
 }
