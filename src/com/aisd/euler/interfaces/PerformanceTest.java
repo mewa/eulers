@@ -2,7 +2,7 @@ package com.aisd.euler.interfaces;
 
 import javax.inject.Inject;
 
-public abstract class PeformanceTest {
+public abstract class PerformanceTest {
 	protected abstract void init();
 
 	@Inject

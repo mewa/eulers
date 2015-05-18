@@ -1,5 +1,6 @@
 package com.aisd.euler.components;
 
+import com.aisd.euler.interfaces.IClock;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.modules.DebugLoggerModule;
 import com.aisd.euler.modules.StandardOutputModule;
@@ -11,4 +12,5 @@ import dagger.Component;
 		SerialClockModule.class })
 public interface LoggerComponent {
 	Logger provideLogger();
+	IClock provideClock();
 }
