@@ -1,7 +1,5 @@
 package com.aisd.euler.modules;
 
-import com.aisd.euler.interfaces.IClock;
-import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.utils.GraphPerformanceTest;
 

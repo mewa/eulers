@@ -2,7 +2,6 @@ package com.aisd.euler.components;
 
 import com.aisd.euler.interfaces.Representation;
 import com.aisd.euler.models.DAGraph;
-import com.aisd.euler.models.GraphMatrix;
 import com.aisd.euler.modules.DAGraphModule;
 import com.aisd.euler.modules.GraphMatrixRepresentationModule;
 

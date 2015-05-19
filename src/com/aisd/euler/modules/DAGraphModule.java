@@ -2,7 +2,6 @@ package com.aisd.euler.modules;
 
 import com.aisd.euler.interfaces.Representation;
 import com.aisd.euler.models.DAGraph;
-import com.aisd.euler.models.GraphMatrix;
 
 import dagger.Module;
 import dagger.Provides;

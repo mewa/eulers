@@ -2,8 +2,6 @@ package com.aisd.euler.modules;
 
 import java.util.Scanner;
 
-import javax.inject.Named;
-
 import com.aisd.euler.interfaces.Representation;
 import com.aisd.euler.models.GraphMatrix;
 import com.aisd.euler.models.MatrixGraphStream;

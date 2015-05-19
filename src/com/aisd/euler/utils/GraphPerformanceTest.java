@@ -1,15 +1,12 @@
 package com.aisd.euler.utils;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Provider;
 
 import com.aisd.euler.Main;
-import com.aisd.euler.interfaces.IClock;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.interfaces.Representation;
-import com.aisd.euler.models.DAGraph;
 
 public class GraphPerformanceTest extends PerformanceTest {
 	@Inject
@@ -20,7 +17,7 @@ public class GraphPerformanceTest extends PerformanceTest {
 
 	@Inject
 	public GraphPerformanceTest() {
-		Main.inject(this);
+//		Main.inject(this);
 	}
 
 	@Override

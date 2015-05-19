@@ -1,6 +1,5 @@
 package com.aisd.euler.components;
 
-import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.modules.GraphPerformanceTestModule;
 

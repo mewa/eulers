@@ -1,9 +1,5 @@
 package com.aisd.euler.models;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Scanner;
 
 import com.aisd.euler.interfaces.GraphReader;

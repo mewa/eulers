@@ -1,14 +1,10 @@
 package com.aisd.euler.models;
 
-import java.io.Reader;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.aisd.euler.Main;
-import com.aisd.euler.interfaces.GraphReader;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.Representation;
 
@@ -18,7 +14,7 @@ public class GraphMatrix implements Representation {
 	Logger logger;
 	
 	public GraphMatrix() {
-		Main.inject(this);
+//		Main.inject(this);
 	}
 	
 	public void read(Scanner data) {
