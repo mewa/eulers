@@ -29,7 +29,7 @@ public class GraphMatrix implements Representation {
 			matrix[i] = new int[numVertices];
 		}
 		int numEdges = data.nextInt();
-		logger.log(Logger.INFO, "Vertices: " + numVertices + ", Edges: " + numEdges);
+//		logger.log(Logger.INFO, "Vertices: " + numVertices + ", Edges: " + numEdges);
 		while (data.hasNext()) {
 			int x = data.nextInt();
 			int y = data.nextInt();
@@ -40,7 +40,7 @@ public class GraphMatrix implements Representation {
 	
 	@Override
 	public boolean hasConnection(int from, int to) {
-		return false;
+		return matrix[from][to] != 0;
 	}
 
 	@Override
@@ -59,6 +59,12 @@ public class GraphMatrix implements Representation {
 			}
 		}
 		return count;
+	}
+
+	@Override
+	public void remove(int from, int to) {
+		matrix[from][to] = 0;
+		matrix[to][from] = 0;
 	}
 
 }

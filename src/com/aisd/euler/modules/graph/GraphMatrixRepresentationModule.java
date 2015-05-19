@@ -24,9 +24,10 @@ public class GraphMatrixRepresentationModule {
 
 	@Provides
 	GraphReader provideMatrixGraphStream() {
-		MatrixGraphStream stream = new MatrixGraphStream("5 5\n"
-				+ "0 1 0 2 0 3\n"
+		MatrixGraphStream stream = new MatrixGraphStream("5 6\n"
+				+ "0 1 0 2\n"
 				+ "1 2\n"
+				+ "2 3 2 4\n"
 				+ "3 4\n");
 		return stream;
 	}

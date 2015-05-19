@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.aisd.euler.interfaces.Logger;
+import com.aisd.euler.utils.DebugLogger;
+import com.aisd.euler.utils.NanoClock;
+import com.aisd.euler.utils.StandardOutput;
 
 public class LoggerTest {
 
@@ -31,13 +34,26 @@ public class LoggerTest {
 	}
 	
 	public LoggerTest() {
-		//logger = DaggerLoggerComponent.create().getLogger();
+		logger = new DebugLogger(new StandardOutput(), new NanoClock());
 	}
 	
 	@Test
 	public void testCanWrite() {
+		logger.setLogLevel(Logger.VERBOSE);
 		String str = "Test";
 		logger.write(str);
+		assertTrue(outContent.toString().contains(str));
+		logger.setLogLevel(Logger.DEBUG);
+	}
+	
+	@Test
+	public void testCanSliceTypes() {
+		logger.setLogLevel(Logger.DEBUG);
+		String str = "verboseTest";
+		logger.write(str);
+		assertTrue(!outContent.toString().contains(str));
+		str = "debugTest";
+		logger.log(Logger.DEBUG, str);
 		assertTrue(outContent.toString().contains(str));
 	}
 
