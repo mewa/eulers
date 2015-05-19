@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import com.aisd.euler.interfaces.Application;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.models.DAGraph;
+import com.aisd.euler.models.GraphMatrix;
 import com.aisd.euler.modules.ApplicationModule;
 import com.aisd.euler.modules.DebugLoggerModule;
 import com.aisd.euler.modules.StandardOutputModule;
@@ -16,9 +17,11 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = { ApplicationModule.class, DebugLoggerModule.class,
-		NanoClockModule.class, StandardOutputModule.class })
+		NanoClockModule.class, StandardOutputModule.class }, dependencies = { GraphComponent.class })
 public interface ApplicationComponent {
 	Application app();
 
 	void inject(GraphPerformanceTest obj);
+
+	void inject(GraphMatrix graphMatrix);
 }

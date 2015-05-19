@@ -10,6 +10,7 @@ public abstract class PerformanceTest {
 	protected long runtime;
 
 	public final void start() {
+		init();
 		runtime = clock.time();
 		run();
 		runtime = clock.time() - runtime;

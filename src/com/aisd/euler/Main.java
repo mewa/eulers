@@ -13,6 +13,7 @@ import com.aisd.euler.components.GraphPerformanceTestComponent;
 import com.aisd.euler.interfaces.Application;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
+import com.aisd.euler.models.GraphMatrix;
 import com.aisd.euler.modules.GraphPerformanceTestModule;
 import com.aisd.euler.utils.GraphPerformanceTest;
 
@@ -22,11 +23,12 @@ public class Main {
 	static Logger logger;
 
 	public static void inject(GraphPerformanceTest obj) {
-		 appComponent.inject(obj);
+		appComponent.inject(obj);
 	}
 
 	static {
-		appComponent = DaggerApplicationComponent.create();
+		appComponent = DaggerApplicationComponent.builder()
+				.graphComponent(DaggerGraphComponent.create()).build();
 		app = appComponent.app();
 		logger = app.logger();
 		logger.setLogLevel(Logger.VERBOSE);
@@ -35,9 +37,12 @@ public class Main {
 	public static void main(String[] args) {
 		GraphPerformanceTest test = new GraphPerformanceTest();
 		test.start();
-		
-		
+
 		logger.log(Logger.DEBUG, "END");
+	}
+
+	public static void inject(GraphMatrix graphMatrix) {
+		appComponent.inject(graphMatrix);
 	}
 
 }
