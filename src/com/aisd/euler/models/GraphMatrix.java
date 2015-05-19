@@ -4,20 +4,25 @@ import java.util.Scanner;
 
 import javax.inject.Inject;
 
-import com.aisd.euler.Main;
+import com.aisd.euler.interfaces.GraphReader;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.Representation;
 
 public class GraphMatrix implements Representation {
 	protected int[][] matrix;
-	@Inject
-	Logger logger;
 	
-	public GraphMatrix() {
-//		Main.inject(this);
+	Logger logger;
+	GraphReader reader;
+	
+	@Inject
+	public GraphMatrix(Logger logger, GraphReader reader) {
+		this.logger = logger;
+		this.reader = reader;
+		read();
 	}
 	
-	public void read(Scanner data) {
+	public void read() {
+		Scanner data = reader.getData();
 		int numVertices = data.nextInt();
 		matrix = new int[numVertices][];
 		for (int i = 0; i < matrix.length; ++i) {
@@ -34,7 +39,7 @@ public class GraphMatrix implements Representation {
 	}
 	
 	@Override
-	public boolean isConnected(int from, int to) {
+	public boolean hasConnection(int from, int to) {
 		return false;
 	}
 

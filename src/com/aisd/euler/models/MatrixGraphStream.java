@@ -24,4 +24,9 @@ public class MatrixGraphStream implements GraphReader {
 		return data.nextInt();
 	}
 
+	@Override
+	public Scanner getData() {
+		return data;
+	}
+
 }

@@ -3,18 +3,13 @@ package com.aisd.euler.components;
 import javax.inject.Singleton;
 
 import com.aisd.euler.Application;
-import com.aisd.euler.models.GraphMatrix;
-import com.aisd.euler.modules.ApplicationModule;
 import com.aisd.euler.modules.DebugLoggerModule;
-import com.aisd.euler.modules.StandardOutputModule;
-import com.aisd.euler.modules.clocks.NanoClockModule;
-import com.aisd.euler.utils.GraphPerformanceTest;
+import com.aisd.euler.modules.graph.GraphModule;
 
 import dagger.Component;
 
 @Singleton
-@Component(modules = { ApplicationModule.class, DebugLoggerModule.class,
-		NanoClockModule.class, StandardOutputModule.class })
+@Component(modules = { DebugLoggerModule.class, GraphModule.class })
 public interface ApplicationComponent {
 	Application app();
 }

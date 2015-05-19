@@ -3,7 +3,6 @@ package com.aisd.euler.utils;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-import com.aisd.euler.Main;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.interfaces.Representation;
@@ -17,7 +16,6 @@ public class GraphPerformanceTest extends PerformanceTest {
 
 	@Inject
 	public GraphPerformanceTest() {
-//		Main.inject(this);
 	}
 
 	@Override
@@ -38,6 +36,9 @@ public class GraphPerformanceTest extends PerformanceTest {
 	@Override
 	public void run() {
 		logger.log(Logger.INFO, "Performance test started");
+		for (int i = 1; i < graph.numberOfVertices(); ++i) {
+			graph.hasConnection(i - 1, i);
+		}
 	}
 
 }
