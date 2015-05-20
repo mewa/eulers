@@ -3,6 +3,7 @@ package com.aisd.euler.utils;
 import java.util.Stack;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
 
 import com.aisd.euler.interfaces.Logger;
@@ -13,10 +14,12 @@ public class GraphPerformanceTest extends PerformanceTest {
 	@Inject
 	Logger logger;
 	@Inject
+	@Named("not-eulerian")
 	Provider<Representation> graphProvider;
 	Representation graph;
 	Stack<Integer> cycleStack;
 	int numberOfEdges;
+	boolean run = true;
 
 	@Inject
 	public GraphPerformanceTest() {
@@ -31,6 +34,25 @@ public class GraphPerformanceTest extends PerformanceTest {
 		logger.log(Logger.VERBOSE, "Vertices: " + graph.numberOfVertices()
 				+ ", Edges: " + graph.numberOfEdges());
 		numberOfEdges = graph.numberOfEdges();
+		if (!isEulerian(graph)) {
+			run = false;
+			logger.log(Logger.WARN, "Not EULERIAN");
+		}
+	}
+
+	private boolean isEulerian(Representation g) {
+		for (int i = 0; i < g.numberOfVertices(); ++i) {
+			int parity = 0;
+			for (int j = 0; j < g.numberOfVertices(); ++j) {
+				if (g.hasConnection(i, j)) {
+					parity++;
+				}
+			}
+			if ((parity % 2) == 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -42,6 +64,8 @@ public class GraphPerformanceTest extends PerformanceTest {
 	@Override
 	public void run() {
 		logger.log(Logger.INFO, "Performance test started");
+		if (!run)
+			return;
 		for (int i = 0; i < graph.numberOfVertices(); ++i) {
 			graph = graphProvider.get();
 			cycleStack.clear();
@@ -61,7 +85,7 @@ public class GraphPerformanceTest extends PerformanceTest {
 	}
 
 	private String step(int v) {
-//		logger.log(Logger.DEBUG, "step" + v);
+		// logger.log(Logger.DEBUG, "step" + v);
 		while (!isIsolated(v)) {
 			int v2 = grabFirstVertex(v);
 			cycleStack.push(v);
@@ -69,10 +93,10 @@ public class GraphPerformanceTest extends PerformanceTest {
 			v = v2;
 		}
 		if (!cycleStack.isEmpty()) {
-//			logger.log(Logger.DEBUG, "stepstak" + v);
+			// logger.log(Logger.DEBUG, "stepstak" + v);
 			v = cycleStack.pop();
 			return v + "->" + step(v);
-			
+
 		}
 		return "";
 	}

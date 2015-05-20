@@ -21,6 +21,13 @@ public class GraphMatrixRepresentationModule {
 		GraphMatrix graphMatrix = new GraphMatrix(logger, reader);
 		return graphMatrix;
 	}
+	
+	@Provides
+	@Named("not-eulerian")
+	Representation provideNotEulerianRepresentation(Logger logger, @Named("not-eulerian") GraphReader reader) {
+		GraphMatrix graphMatrix = new GraphMatrix(logger, reader);
+		return graphMatrix;
+	}
 
 	@Provides
 	GraphReader provideMatrixGraphStream() {
@@ -28,6 +35,17 @@ public class GraphMatrixRepresentationModule {
 				+ "0 1 0 2\n"
 				+ "1 2\n"
 				+ "2 3 2 4\n"
+				+ "3 4\n");
+		return stream;
+	}
+	
+	@Provides
+	@Named("not-eulerian")
+	GraphReader provideNotEulerianMatrixGraphStream() {
+		MatrixGraphStream stream = new MatrixGraphStream("5 6\n"
+				+ "0 1 0 2\n"
+				+ "1 2 1 3\n"
+				+ "2 4\n"
 				+ "3 4\n");
 		return stream;
 	}
