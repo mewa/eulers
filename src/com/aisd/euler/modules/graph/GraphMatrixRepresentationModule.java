@@ -36,14 +36,14 @@ public class GraphMatrixRepresentationModule {
 	@Named("gen")
 	String genString() {
 		StringBuilder sb = new StringBuilder();
-		int numVerts = 10;
-		generateGraph(numVerts, 20);
+		int numVerts = 30;
+		generateGraph(numVerts, 80);
 		sb.append(numVerts).append(" ").append(tab1.length).append("\n");
 		for (int i = 0; i < tab1.length; ++i) {
 			sb.append(tab1[i]).append(" ").append(tab2[i]).append("\n");
 		}
 		String str = sb.toString();
-		System.out.println(str);
+		//System.out.println(str);
 		return str;
 	}
 
@@ -58,7 +58,7 @@ public class GraphMatrixRepresentationModule {
 		tab2 = new int[drawnNumbers];
 		int x, y;
 		for (int i = 0; i < numberOfVertices;) {
-			x = new Random().nextInt() % numberOfVertices;
+			x = (int) (Math.random() * numberOfVertices);
 			for (int j = 0; j < numbers; j++) {
 				if (tab1[j] == x)
 					wasAlready = true;
@@ -71,7 +71,7 @@ public class GraphMatrixRepresentationModule {
 				wasAlready = false;
 			}
 		}
-		for r(int i = 0; i < numberOfVertices; i++) {
+		for (int i = 0; i < numberOfVertices; i++) {
 			if (i == numberOfVertices - 1)
 				tab2[i] = tab1[0];
 			else
@@ -80,8 +80,8 @@ public class GraphMatrixRepresentationModule {
 		if (numbers != drawnNumbers) {
 			do {
 				wasAlready = false;
-				x = new Random().nextInt() % numberOfVertices;
-				y = new Random().nextInt() % numberOfVertices;
+				x = (int) (Math.random() * numberOfVertices);
+				y = (int) (Math.random() * numberOfVertices);
 				for (int i = 0; i < numbers; i++) {
 					if ((((tab1[i] == x) && (tab2[i] == y)) || ((tab1[i] == y) && (tab2[i] == x))))
 						wasAlready = true;
@@ -99,7 +99,7 @@ public class GraphMatrixRepresentationModule {
 					tab2[numbers] = tempNumber;
 					break;
 				}
-				x = new Random().nextInt() % numberOfVertices;
+				x = (int) (Math.random() * numberOfVertices);
 				for (int i = 0; i < numbers; i++) {
 					if (((tab1[i] == x) && (tab2[i] == y))
 							|| (((tab1[i] == y) && (tab2[i] == x)) || (x == y)))
