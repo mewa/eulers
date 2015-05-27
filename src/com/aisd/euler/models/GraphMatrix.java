@@ -1,5 +1,6 @@
 package com.aisd.euler.models;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.inject.Inject;
@@ -7,12 +8,21 @@ import javax.inject.Inject;
 import com.aisd.euler.interfaces.GraphReader;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.Representation;
+import com.aisd.euler.modules.DebugLoggerModule;
 
 public class GraphMatrix implements Representation {
 	protected int[][] matrix;
 	
 	Logger logger;
 	GraphReader reader;
+	
+	public GraphMatrix(GraphMatrix matrix) {
+		this.matrix = Arrays.copyOf(matrix.matrix, matrix.matrix.length);
+		for (int i = 0; i < matrix.matrix.length; ++i) {
+			this.matrix[i] = Arrays.copyOf(matrix.matrix[i], matrix.matrix.length);
+		}
+		this.logger = matrix.logger;
+	}
 	
 	@Inject
 	public GraphMatrix(Logger logger, GraphReader reader) {

@@ -9,14 +9,16 @@ import javax.inject.Provider;
 import com.aisd.euler.interfaces.Logger;
 import com.aisd.euler.interfaces.PerformanceTest;
 import com.aisd.euler.interfaces.Representation;
+import com.aisd.euler.models.GraphMatrix;
 
 public class GraphPerformanceTest extends PerformanceTest {
 	@Inject
 	Logger logger;
 	@Inject
-	@Named("not-eulerian")
+//	@Named("not-eulerian")
 	Provider<Representation> graphProvider;
 	Representation graph;
+	Representation graphStash;
 	Stack<Integer> cycleStack;
 	int numberOfEdges;
 	boolean run = true;
@@ -29,12 +31,12 @@ public class GraphPerformanceTest extends PerformanceTest {
 	protected void init() {
 		logger.log(Logger.VERBOSE, "Performance test init");
 		cycleStack = new Stack<Integer>();
-		graph = graphProvider.get();
-		logger.log(Logger.VERBOSE, "Graph: " + graph);
-		logger.log(Logger.VERBOSE, "Vertices: " + graph.numberOfVertices()
-				+ ", Edges: " + graph.numberOfEdges());
-		numberOfEdges = graph.numberOfEdges();
-		if (!isEulerian(graph)) {
+		graphStash = graphProvider.get();
+		logger.log(Logger.VERBOSE, "Graph: " + graphStash);
+		logger.log(Logger.VERBOSE, "Vertices: " + graphStash.numberOfVertices()
+				+ ", Edges: " + graphStash.numberOfEdges());
+		numberOfEdges = graphStash.numberOfEdges();
+		if (!isEulerian(graphStash)) {
 			run = false;
 			logger.log(Logger.WARN, "Not EULERIAN");
 		}
@@ -66,8 +68,8 @@ public class GraphPerformanceTest extends PerformanceTest {
 		logger.log(Logger.INFO, "Performance test started");
 		if (!run)
 			return;
-		for (int i = 0; i < graph.numberOfVertices(); ++i) {
-			graph = graphProvider.get();
+		for (int i = 0; i < graphStash.numberOfVertices(); ++i) {
+			graph = new GraphMatrix((GraphMatrix) graphStash);
 			cycleStack.clear();
 			String solution;
 			// cycleStack.push(i);
@@ -77,9 +79,9 @@ public class GraphPerformanceTest extends PerformanceTest {
 			solution += step(v);
 
 			// result
-			logger.log(Logger.DEBUG, "solution: " + solution);
+			//logger.log(Logger.DEBUG, "solution: " + solution);
 			if (cycleStack.size() == numberOfEdges + 1) {
-				printStack(cycleStack);
+				//printStack(cycleStack);
 			}
 		}
 	}
